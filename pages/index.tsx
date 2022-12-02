@@ -1,8 +1,18 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { DatePicker, message } from 'antd';
 import styles from '../styles/Home.module.css'
+import {useState} from "react";
+import {Dayjs} from "dayjs";
 
 export default function Home() {
+  const [date, setDate] = useState<Dayjs | null>(null);
+  const handleChange = (value: Dayjs | null) => {
+    console.log(typeof value, value)
+    message.info(`Selected Date: ${value ? value.format('YYYY-MM-DD') : 'None'}`);
+    setDate(value);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,6 +22,13 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <h1 className="text-3xl font-bold underline">
+          Hello world!
+        </h1>
+        <DatePicker onChange={handleChange} />
+        <div style={{ marginTop: 16 }}>
+          Selected Date: {date ? date.format('YYYY-MM-DD') : 'None'}
+        </div>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
