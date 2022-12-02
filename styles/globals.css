@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background-color: #fff;
+  --text-color: gray;
+}
+
 html,
 body {
   padding: 0;
